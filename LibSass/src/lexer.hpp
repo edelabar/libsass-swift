@@ -94,7 +94,7 @@ namespace Sass {
       // there is a small chance that the search string
       // is longer than the rest of the string to look at
       while (*pre && *src == *pre) {
-        ++src, ++pre;
+          static_cast<void>(++src), ++pre;
       }
       return *pre ? 0 : src;
     }
@@ -187,7 +187,7 @@ namespace Sass {
     template <prelexer mx>
     const char* zero_plus(const char* src) {
       const char* p = mx(src);
-      while (p) src = p, p = mx(src);
+        while (p) static_cast<void>(src = p), p = mx(src);
       return src;
     }
 
@@ -197,7 +197,7 @@ namespace Sass {
     const char* one_plus(const char* src) {
       const char* p = mx(src);
       if (!p) return 0;
-      while (p) src = p, p = mx(src);
+        while (p) static_cast<void>(src = p), p = mx(src);
       return src;
     }
 
